@@ -1,6 +1,9 @@
 {
   "name": "zeit",
-  "version": "1",
-  "dependencies": {},
+  "version": "0.0.2",
+  "description": "Zeit driver for Membrane",
+  "dependencies": {
+    "now-client": "^1.1.6"
+  },
   "license": "MIT"
 }
