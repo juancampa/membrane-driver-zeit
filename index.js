@@ -19,6 +19,12 @@ export const DeploymentsCollection = {
   }
 }
 
+export const Deployment = {
+  lastUpdated({ source }) {
+    return source['uid'];
+  }
+}
+
 // export let Root = {
 // }
 

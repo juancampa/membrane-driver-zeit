@@ -11,5 +11,5 @@ schema.type('Root')
 schema.type('DeploymentsCollection')
   .computed('items', '[Deployments]')
 
-// schema.type('Deployments')
-//   .field('id', 'String')
+schema.type('Deployments')
+  .field('uid', 'String')
