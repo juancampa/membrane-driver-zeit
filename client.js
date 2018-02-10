@@ -8,8 +8,8 @@ const client = require('axios').create({
   }
 })
 
-export async function get(url, params) {
-  const result = await client.get(url, { params })
+export async function get(url, params, headers) {
+  const result = await client.get(url, { params, headers })
   return result.data
 }
 
