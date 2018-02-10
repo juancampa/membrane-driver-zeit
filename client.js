@@ -1,10 +1,24 @@
 const { TOKEN } = process.env
-if (!TOKEN) {
-	throw new Error('Please provide TOKEN as environment variables')
+
+const client = require('axios').create({
+  baseURL: 'https://api.zeit.co/v2/now/',
+  params: {},
+  headers: {
+    Authorization: 'Bearer ' + TOKEN
+  }
+})
+
+export async function get(url, params) {
+  const result = await client.get(url, { params })
+  return result.data
 }
 
-const NowClient = require('now-client')
+export async function post(url, body, params) {
+  const result = await client.post(url, body, { params })
+  return result
+}
 
-const api = new NowClient(TOKEN)
-
-export const now = api
+export async function put(url, body, params) {
+  const result = await client.put(url, body, { params })
+  return result
+}

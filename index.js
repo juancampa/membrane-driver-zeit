@@ -1,4 +1,4 @@
-import { now } from './client.js'
+import * as client from './client';
 
 const { root } = program.refs
 
@@ -15,19 +15,13 @@ export async function update({ previousVersion }) {
 
 export const DeploymentsCollection = {
   async items() {
-    const deployments = await now.getDeployments()
-    return deployments;
+    return client.get(`/deployments/`);
   }
 }
 
-export const Answers = {
-  id({ source }) {
-    return source['id'];
-  }
-}
-export let Root = {
-}
+// export let Root = {
+// }
 
-export async function timer({ key }) {
-  // Called every time a timer fires
-}
+// export async function timer({ key }) {
+//   // Called every time a timer fires
+// }
