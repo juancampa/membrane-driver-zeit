@@ -9,7 +9,10 @@ schema.type('Root')
   .field('deployments', 'DeploymentsCollection')
 
 schema.type('DeploymentsCollection')
+  .computed('one', 'Deployments')
+    .param('id', 'String')
   .computed('items', '[Deployments]')
 
 schema.type('Deployments')
+  .computed('self', 'Deployments*')
   .field('uid', 'String')

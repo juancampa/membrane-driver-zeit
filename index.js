@@ -14,12 +14,19 @@ export async function update({ previousVersion }) {
 }
 
 export const DeploymentsCollection = {
+  async one({ args }) {
+    const result = await client.get(`/deployments/${args.id}`);
+    return result[0];
+  },
   async items() {
     return client.get(`/deployments/`);
   }
 }
 
 export const Deployment = {
+  async self({ source }) {
+    return root.deployments.one({ id: source.id });
+  },
   uid({ source }) {
     return source['uid'];
   }
