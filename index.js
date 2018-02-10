@@ -20,14 +20,7 @@ export const DeploymentsCollection = {
 }
 
 export const Deployment = {
-  lastUpdated({ source }) {
+  uid({ source }) {
     return source['uid'];
   }
 }
-
-// export let Root = {
-// }
-
-// export async function timer({ key }) {
-//   // Called every time a timer fires
-// }
