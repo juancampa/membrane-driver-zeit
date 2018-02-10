@@ -6,7 +6,7 @@ export async function init() {
   // Called when the program is run
   await root.set({
     deployments: {}
-  })
+  });
 }
 
 export async function update({ previousVersion }) {
