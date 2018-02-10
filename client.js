@@ -2,14 +2,13 @@ const { TOKEN } = process.env
 
 const client = require('axios').create({
   baseURL: 'https://api.zeit.co/v2/now/',
-  params: {},
   headers: {
     Authorization: 'Bearer ' + TOKEN
-  }
+  },
 })
 
-export async function get(url, params, headers) {
-  const result = await client.get(url, { params, headers })
+export async function get(url, params) {
+  const result = await client.get(url, { params })
   return result.data
 }
 
