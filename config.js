@@ -5,6 +5,7 @@ environment
 
 schema.type('Root')
   .field('deployments', 'DeploymentsCollection')
+  .field('teams', 'TeamsCollection')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
@@ -19,3 +20,16 @@ schema.type('Deployment')
   .field('created', 'String')
   .field('state', 'String')
   .field('type', 'String')
+
+schema.type('TeamsCollection')
+  .computed('one', 'Deployment')
+    .param('id', 'String')
+  .computed('items', '[Team]')
+
+schema.type('Team')
+  .computed('self', 'Team*')
+  .field('id', 'String')
+  .field('slug', 'String')
+  .field('name', 'String')
+  .field('creatorId', 'String')
+  .field('avatar', 'String')

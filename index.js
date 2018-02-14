@@ -18,6 +18,17 @@ export const DeploymentsCollection = {
   },
 };
 
+export const TeamsCollection = {
+  async one({ args }) {
+    const result = await get(`/teams/${args.id}`);
+    return result;
+  },
+  async items() {
+    const result = await get(`/teams/`);
+    return result.teams;
+  },
+};
+
 export const Deployment = {
   async self({ source }) {
     return root.deployments.one({ id: source.id });
@@ -39,5 +50,26 @@ export const Deployment = {
   },
   type({ source }) {
     return source['type'];
+  },
+};
+
+export const Team = {
+  async self({ source }) {
+    return root.deployments.one({ id: source.id });
+  },
+  id({ source }) {
+    return source['id'];
+  },
+  slug({ source }) {
+    return source['slug'];
+  },
+  name({ source }) {
+    return source['name'];
+  },
+  creatorId({ source }) {
+    return source['creatorId'];
+  },
+  avatar({ source }) {
+    return source['avatar'];
   },
 };
