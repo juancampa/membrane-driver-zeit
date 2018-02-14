@@ -32,7 +32,7 @@ export const TeamsCollection = {
   },
 };
 
-export const Deployments = {
+export const Deployment = {
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
