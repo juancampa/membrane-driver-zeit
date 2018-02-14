@@ -1,32 +1,23 @@
-import * as client from './client';
+import { get } from './client';
 
 const { root } = program.refs;
 
 export async function init() {
   // Called when the program is run
-  await root.set({
-    deployments: {},
-  });
+  return root.set({ deployments: {} });
+  // await root.set({
+  //   deployments: {},
+  // });
 }
-
-export async function update({ previousVersion }) {
-  console.log('updating Zeit Driver from previous version: ', previousVersion);
-}
-
-export let Root = {};
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    const result = await client.get(`/deployments/${args.id}`);
-    return result.data;
+    const result = await get(`/deployments/${args.id}`);
+    return result;
   },
   async items() {
-    const result = await client.get(`/deployments/`);
-    console.log('RESULT', result);
-    if (!result.status) {
-      return null;
-    }
-    return result.data.deployments;
+    const result = await get(`/deployments/`);
+    return result.deployments;
   },
 };
 

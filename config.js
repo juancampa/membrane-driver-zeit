@@ -1,5 +1,7 @@
 const { dependencies, endpoints, environment, imports, schema, expressions } = program;
 
+program.name = 'zeit';
+
 // Environment
 // environment
 //   .add('TOKEN', 'The API TOKEN')
