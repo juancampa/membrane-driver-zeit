@@ -15,7 +15,7 @@ schema.type('DeploymentsCollection')
     .param('uid', 'String')
   .computed('items', '[DeploymentsItem]')
 
-schema.type('DeploymentItem')
+schema.type('DeploymentsItem')
   .field('uid', 'String')
   .computed('self', 'Deployments*')
 
