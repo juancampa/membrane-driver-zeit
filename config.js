@@ -13,7 +13,11 @@ schema.type('Root')
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('uid', 'String')
-  .computed('items', '[Deployment]')
+  .computed('page', 'DeploymentsPage')
+
+schema.type('DeploymentsPage')
+  .field('items', '[Deployment]')
+  .field('next', 'DeploymentsPage')
 
 schema.type('Deployment')
   .computed('self', 'Deployment*')
