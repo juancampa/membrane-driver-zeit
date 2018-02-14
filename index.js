@@ -16,14 +16,14 @@ export async function update({ previousVersion }) {
 export const DeploymentsCollection = {
   async one({ args }) {
     const result = await client.get(`/deployments/${args.id}`);
-    return result[0];
+    return result.data;
   },
   async items() {
     return client.get(`/deployments/`);
   }
 }
 
-export const Deployment = {
+export const Deployments = {
   async self({ source }) {
     return root.deployments.one({ id: source.id });
   },
