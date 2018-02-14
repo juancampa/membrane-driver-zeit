@@ -21,4 +21,3 @@ export async function put(url, body, params) {
   const result = await client.put(url, body, { params });
   return result;
 }
-en el caso de hacer peticiones post y put. sería igual.? 
