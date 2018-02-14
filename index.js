@@ -1,4 +1,4 @@
-import { get } from './client';
+import * as client from './client';
 
 const { root } = program.refs;
 
@@ -15,12 +15,12 @@ export async function update({ previousVersion }) {
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    const result = await get(`/deployments/${args.id}`);
-    return result;
+    const result = await client.get(`/deployments/${args.id}`);
+    return result.data;
   },
   async items() {
-    const result = await get(`/deployments/`);
-    return result;
+    const result = await client.get(`/deployments/`);
+    return result.data;
   },
 };
 
