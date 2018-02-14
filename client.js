@@ -1,4 +1,4 @@
-const { TOKEN } = process.env
+const { TOKEN } = process.env;
 
 const client = require('axios').create({
   baseURL: 'https://api.zeit.co/v2/now/',
