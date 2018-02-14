@@ -18,7 +18,6 @@ schema.type('Deployment')
   .field('host', 'String')
   .field('state', 'String')
   .field('stateTs', 'String')
-  .field('type', 'String')
 
 schema.type('TeamsCollection')
   .computed('one', 'Team')
