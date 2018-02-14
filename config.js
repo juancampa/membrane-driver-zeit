@@ -19,10 +19,6 @@ schema.type('Deployment')
   .field('state', 'String')
   .field('type', 'String')
   .field('stateTs', 'String')
-  .computed('name', 'String')
-  .computed('url', 'String')
-  .computed('created', 'String')
-
 
 schema.type('TeamsCollection')
   .computed('one', 'Team')
