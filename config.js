@@ -1,8 +1,8 @@
 const { dependencies, endpoints, environment, imports, schema, expressions } = program;
 
 // Environment
-environment
-  .add('TOKEN', 'The API TOKEN')
+// environment
+//   .add('TOKEN', 'The API TOKEN')
 
   // Types
 schema.type('Root')

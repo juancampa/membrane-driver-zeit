@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+hello
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+  const TOKEN = 'odCzqZ1jf7KJsF9Lyq90rNvT'
+  const client = axios.create({
+    baseURL: 'https://api.zeit.co/v2/now/',
+      headers: {
+        Authorization: 'Bearer ' + TOKEN
+      },
+  });
+  async function get(url, params) {
+    const result = await client.get(url, { params })
+    return result.data
+  }
+  async function deployments() {
+    const result = await get('/deployments/');
+    console.log(result)
+  }
+  deployments();
+</script>
+</body>
+</html>
