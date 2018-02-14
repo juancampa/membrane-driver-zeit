@@ -4,7 +4,10 @@ const { root } = program.refs;
 
 export async function init() {
   // Called when the program is run
-  return root.set({ deployments: {} });
+  return root.set({
+    deployments: {},
+    teams: {},
+  });
 }
 
 export const DeploymentsCollection = {
