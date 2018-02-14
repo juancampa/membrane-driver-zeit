@@ -17,7 +17,6 @@ export const DeploymentsCollection = {
   },
   async items() {
     const result = await get(`/v2/now/deployments/`);
-    console.log('RESULT ' + result.deployments)
     return result.deployments;
   },
 };
