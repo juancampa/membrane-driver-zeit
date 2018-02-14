@@ -24,7 +24,7 @@ export const DeploymentsCollection = {
   },
 };
 
-export const Deployments = {
+export const Deployment = {
   async self({ source }) {
     return root.deployments.one({ id: source.id });
   },
