@@ -20,7 +20,7 @@ export const DeploymentsCollection = {
   },
   async items() {
     const result = await client.get(`/deployments/`);
-    debugger;
+    console.log(result)
   },
 };
 
