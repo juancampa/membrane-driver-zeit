@@ -26,7 +26,7 @@ export const DeploymentsCollection = {
     if (!result.status) {
       return null;
     }
-    return result.data;
+    return result.data.deployments;
   },
 };
 
