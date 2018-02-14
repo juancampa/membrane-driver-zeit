@@ -41,6 +41,16 @@ export const Deployment = {
   },
 };
 
+export const DeploymentComplete = {
+  async self({ source }) {
+    return root.deployments.one({ uid: source.uid });
+  },
+  uid({ source }) {
+    return source['uid'];
+  },
+};
+
+
 export const Team = {
   async self({ source }) {
     return root.teams.one({ id: source.id });
