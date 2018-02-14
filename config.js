@@ -8,7 +8,7 @@ schema.type('Root')
   .field('teams', 'TeamsCollection')
 
 schema.type('DeploymentsCollection')
-  .computed('one', 'Deployment')
+  .computed('one', '[Deployment]')
     .param('uid', 'String')
   .computed('items', '[Deployments]')
 
