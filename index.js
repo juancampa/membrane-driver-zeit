@@ -28,14 +28,13 @@ export const DeploymentsCollection = {
   },
 };
 
-export const TeamsCollection = {
-  async one({ args }) {
-    const result = await get(`/teams/${args.id}`);
-    return result;
-  },
-  async items() {
-    const result = await get(`/teams/`);
-    return result.teams;
+export let DeploymentsItem = {
+  self({ source }) {
+    const { uid } = source;
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    return root.deployments.one({ uid })
   },
 };
 
@@ -45,6 +44,17 @@ export const Deployments = {
   },
   uid({ source }) {
     return source['uid'];
+  },
+};
+
+export const TeamsCollection = {
+  async one({ args }) {
+    const result = await get(`/teams/${args.id}`);
+    return result;
+  },
+  async items() {
+    const result = await get(`/teams/`);
+    return result.teams;
   },
 };
 
