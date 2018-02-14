@@ -16,7 +16,7 @@ export async function update({ previousVersion }) {
 export const DeploymentsCollection = {
   async one({ args }) {
     const result = await client.get(`/deployments/${args.id}`);
-    return result.data;
+    return result.data.deployments;
   },
   async items() {
     return client.get(`/deployments/`);
