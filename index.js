@@ -1,11 +1,11 @@
 import * as client from './client';
 
-const { root } = program.refs
+const { root } = program.refs;
 
 export async function init() {
   // Called when the program is run
   await root.set({
-    deployments: {}
+    deployments: {},
   });
 }
 
@@ -16,12 +16,13 @@ export async function update({ previousVersion }) {
 export const DeploymentsCollection = {
   async one({ args }) {
     const result = await client.get(`/deployments/${args.id}`);
-    return result.data.deployments;
+    return result.data;
   },
   async items() {
-    return client.get(`/deployments/`);
-  }
-}
+    const result = await client.get(`/deployments/`);
+    return result.data;
+  },
+};
 
 export const Deployments = {
   async self({ source }) {
@@ -29,5 +30,5 @@ export const Deployments = {
   },
   uid({ source }) {
     return source['uid'];
-  }
-}
+  },
+};

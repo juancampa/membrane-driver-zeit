@@ -1,6 +1,6 @@
 {
   "name": "zeit",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Zeit driver for Membrane",
   "dependencies": {
     "axios": "^0.17.1"
