@@ -1,12 +1,8 @@
 const { dependencies, endpoints, environment, imports, schema, expressions } = program;
 
-program.name = 'zeit';
+environment
+  .add('TOKEN', 'The API TOKEN')
 
-// Environment
-// environment
-//   .add('TOKEN', 'The API TOKEN')
-
-  // Types
 schema.type('Root')
   .field('deployments', 'DeploymentsCollection')
 
@@ -19,3 +15,7 @@ schema.type('Deployment')
   .computed('self', 'Deployment*')
   .field('uid', 'String')
   .field('name', 'String')
+  .field('url', 'String')
+  .field('created', 'String')
+  .field('state', 'String')
+  .field('type', 'String')

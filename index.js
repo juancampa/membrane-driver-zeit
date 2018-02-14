@@ -5,9 +5,6 @@ const { root } = program.refs;
 export async function init() {
   // Called when the program is run
   return root.set({ deployments: {} });
-  // await root.set({
-  //   deployments: {},
-  // });
 }
 
 export const DeploymentsCollection = {
@@ -30,5 +27,17 @@ export const Deployment = {
   },
   name({ source }) {
     return source['name'];
+  },
+  url({ source }) {
+    return source['url'];
+  },
+  created({ source }) {
+    return source['created'];
+  },
+  state({ source }) {
+    return source['state'];
+  },
+  type({ source }) {
+    return source['type'];
   },
 };
