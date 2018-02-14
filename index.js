@@ -12,11 +12,11 @@ export async function init() {
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    const result = await get(`/deployments/${args.id}`);
+    const result = await get(`/v2/now/deployments/${args.id}`);
     return result;
   },
   async items() {
-    const result = await get(`/deployments/`);
+    const result = await get(`/v2/now/deployments/`);
     return result.deployments;
   },
 };

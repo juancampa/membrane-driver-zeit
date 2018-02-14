@@ -1,7 +1,7 @@
 const { TOKEN } = process.env;
 
 const client = require('axios').create({
-  baseURL: 'https://api.zeit.co/v2/now/',
+  baseURL: 'https://api.zeit.co/',
   headers: {
     Authorization: 'Bearer ' + TOKEN,
   },
