@@ -13,7 +13,7 @@ schema.type('DeploymentsCollection')
     .param('id', 'String')
   .computed('items', '[DeploymentsPage]')
 
-schema.type('DeploymentsPage ')
+schema.type('DeploymentsPage')
   .computed('self', 'Deployment*')
 
 schema.type('Deployment')
