@@ -13,7 +13,7 @@ schema.type('DeploymentsCollection')
   .computed('items', '[Deployments]')
 
 schema.type('Deployments')
-  .computed('self', 'Deployments*')
+  .computed('self', 'Deployment*')
   .field('uid', 'String')
   .field('name', 'String')
   .field('url', 'String')
