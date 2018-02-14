@@ -34,25 +34,10 @@ export const TeamsCollection = {
 
 export const Deployment = {
   async self({ source }) {
-    return root.deployments.one({ uid: source.uid });
+    return root.deployments.one({ id: source.uid });
   },
   uid({ source }) {
     return source['uid'];
-  },
-  name({ source }) {
-    return source['name'];
-  },
-  url({ source }) {
-    return source['url'];
-  },
-  created({ source }) {
-    return source['created'];
-  },
-  state({ source }) {
-    return source['state'];
-  },
-  type({ source }) {
-    return source['type'];
   },
 };
 
@@ -62,17 +47,5 @@ export const Team = {
   },
   id({ source }) {
     return source['id'];
-  },
-  slug({ source }) {
-    return source['slug'];
-  },
-  name({ source }) {
-    return source['name'];
-  },
-  creatorId({ source }) {
-    return source['creatorId'];
-  },
-  avatar({ source }) {
-    return source['avatar'];
   },
 };
