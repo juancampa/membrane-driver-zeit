@@ -1,4 +1,4 @@
-import { get } from './client';
+import { get, post } from './client';
 
 const { root } = program.refs;
 
