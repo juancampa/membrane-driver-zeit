@@ -12,7 +12,7 @@ export async function init() {
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    const result = await get(`/v2/now/deployments/${args.id}`);
+    const result = await get(`/v2/now/deployments/${args.uid}`);
     return result;
   },
   async items() {
@@ -34,7 +34,7 @@ export const TeamsCollection = {
 
 export const Deployment = {
   async self({ source }) {
-    return root.deployments.one({ id: source.uid });
+    return root.deployments.one({ uid: source.uid });
   },
   uid({ source }) {
     return source['uid'];
