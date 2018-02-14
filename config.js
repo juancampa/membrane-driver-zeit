@@ -11,11 +11,9 @@ schema.type('Root')
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('id', 'String')
-  .computed('items', '[DeploymentsPage]')
-
-schema.type('DeploymentsPage')
-  .computed('self', 'Deployment*')
+  .computed('items', '[Deployment]')
 
 schema.type('Deployment')
   .computed('self', 'Deployment*')
   .field('uid', 'String')
+  .field('name', 'String')

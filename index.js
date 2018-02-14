@@ -27,18 +27,14 @@ export const DeploymentsCollection = {
   },
 };
 
-export let DeploymentsPage = {
-  items({ source }) {
-    return source.deployments;
-  }
-};
-
-
 export const Deployment = {
   async self({ source }) {
     return root.deployments.one({ id: source.id });
   },
   uid({ source }) {
     return source['uid'];
+  },
+  name({ source }) {
+    return source['name'];
   },
 };
