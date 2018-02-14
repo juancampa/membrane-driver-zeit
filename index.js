@@ -34,7 +34,7 @@ export const TeamsCollection = {
 
 export const Deployment = {
   async self({ source }) {
-    return root.deployments.one({ id: source.id });
+    return root.deployments.one({ id: source.uid });
   },
   uid({ source }) {
     return source['uid'];
