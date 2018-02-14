@@ -22,7 +22,7 @@ schema.type('Deployment')
   .field('type', 'String')
 
 schema.type('TeamsCollection')
-  .computed('one', 'Deployment')
+  .computed('one', 'Team')
     .param('id', 'String')
   .computed('items', '[Team]')
 

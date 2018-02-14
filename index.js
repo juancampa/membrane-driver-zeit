@@ -55,7 +55,7 @@ export const Deployment = {
 
 export const Team = {
   async self({ source }) {
-    return root.deployments.one({ id: source.id });
+    return root.teams.one({ id: source.id });
   },
   id({ source }) {
     return source['id'];
