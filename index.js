@@ -13,6 +13,9 @@ export async function update({ previousVersion }) {
   console.log('updating Zeit Driver from previous version: ', previousVersion);
 }
 
+export let Root = {
+}
+
 export const DeploymentsCollection = {
   async one({ args }) {
     const result = await client.get(`/deployments/${args.id}`);
@@ -20,9 +23,16 @@ export const DeploymentsCollection = {
   },
   async items() {
     const result = await client.get(`/deployments/`);
-    console.log(result)
+    return result.data;
   },
 };
+
+export let DeploymentsPage = {
+  items({ source }) {
+    return source.deployments;
+  }
+};
+
 
 export const Deployment = {
   async self({ source }) {

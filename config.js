@@ -11,7 +11,10 @@ schema.type('Root')
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('id', 'String')
-  .computed('items', '[Deployment]')
+  .computed('items', '[DeploymentsPage]')
+
+schema.type('DeploymentsPage ')
+  .computed('self', 'Deployment*')
 
 schema.type('Deployment')
   .computed('self', 'Deployment*')
