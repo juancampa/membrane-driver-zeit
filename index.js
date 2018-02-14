@@ -34,7 +34,7 @@ export let DeploymentsItem = {
     if (uid === undefined || uid === null) {
       return null;
     }
-    return root.deployments.one({ uid })
+    return root.deployments.one({ uid });
   },
 };
 
