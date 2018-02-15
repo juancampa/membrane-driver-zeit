@@ -10,7 +10,8 @@ export async function init() {
   });
 }
 
-async function setAlias(args) {
+// test
+export async function setAlias(args) {
   result = await post(`/v2/now/deployments/${args.uid}/aliases`, {
     alias: args.alias,
   });
