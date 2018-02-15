@@ -1,4 +1,4 @@
-import { get, post } from './client';
+import { get, post } from "./client";
 
 const { root } = program.refs;
 
@@ -6,13 +6,13 @@ export async function init() {
   // Called when the program is run
   return root.set({
     deployments: {},
-    teams: {},
+    teams: {}
   });
 }
 
 async function setAlias(args) {
   result = await post(`/v2/now/deployments/${args.uid}/aliases`, {
-    alias: args.alias,
+    alias: args.alias
   });
   console.log(result);
 }
@@ -20,8 +20,8 @@ async function setAlias(args) {
 export let Root = {
   setAlias({ args }) {
     return setAlias(args);
-  },
-}
+  }
+};
 
 export const DeploymentsCollection = {
   async one({ args }) {
@@ -31,7 +31,7 @@ export const DeploymentsCollection = {
   async items() {
     const result = await get(`/v2/now/deployments/`);
     return result.deployments;
-  },
+  }
 };
 
 export let DeploymentsItem = {
@@ -41,16 +41,26 @@ export let DeploymentsItem = {
       return null;
     }
     return root.deployments.one({ uid: source.uid });
-  },
+  }
 };
 
 export const Deployment = {
+  async setAlias({ self, args }) {
+    const { uid } = self.match(root.deployments.one());
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    result = await post(`/v2/now/deployments/${uid}/aliases`, {
+      alias: args.alias
+    });
+    console.log(result);
+  },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
   uid({ source }) {
-    return source['uid'];
-  },
+    return source["uid"];
+  }
 };
 
 export const TeamsCollection = {
@@ -61,7 +71,7 @@ export const TeamsCollection = {
   async items() {
     const result = await get(`/teams/`);
     return result.teams;
-  },
+  }
 };
 
 export const Team = {
@@ -69,6 +79,6 @@ export const Team = {
     return root.teams.one({ id: source.id });
   },
   id({ source }) {
-    return source['id'];
-  },
+    return source["id"];
+  }
 };
