@@ -50,6 +50,17 @@ export const Deployment = {
   }
 };
 
+export const Instances = {
+  async items({ self, args }) {
+    const { uid } = self.match(root.deployments.one());
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    const result = await get(`/v1/now/deployments/${uid}/instances/`);
+    return result.instances;
+  }
+};
+
 export const TeamsCollection = {
   async one({ args }) {
     const result = await get(`/teams/${args.id}`);

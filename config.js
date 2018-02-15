@@ -6,6 +6,7 @@ environment
 schema.type('Root')
   .field('deployments', 'DeploymentsCollection')
   .field('teams', 'TeamsCollection')
+  .field('secrets', 'TeamsCollection')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
@@ -20,11 +21,15 @@ schema.type('Deployment')
   .action('setAlias')
     .param('alias', 'String')
   .computed('self', 'Deployment*')
+  .computed('items', '[Instances]')
   .field('uid', 'String')
   .field('host', 'String')
   .field('state', 'String')
   .field('stateTs', 'String')
 
+schema.type('Instances')
+  .field('uid', 'String')
+  .field('url', 'String')
 
 schema.type('TeamsCollection')
   .computed('one', 'Team')
