@@ -16,9 +16,9 @@ schema.type('DeploymentsCollection')
   .computed('items', '[DeploymentsItem]')
 
 schema.type('DeploymentsItem')
-  .field('uid', 'String')
-  .field('name', 'String')
   .computed('self', 'Deployment*')
+  .field('uid', 'String')
+  .field('host', 'String')
 
 schema.type('Deployment')
   .computed('self', 'Deployment*')
