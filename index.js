@@ -1,4 +1,4 @@
-import { get, post } from "./client";
+import { get, post } from './client';
 
 const { root } = program.refs;
 
@@ -40,13 +40,13 @@ export const Deployment = {
     result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias
     });
-    console.log(result);
+    console.log('statusCode', result.statusCode);
   },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
   uid({ source }) {
-    return source["uid"];
+    return source['uid'];
   }
 };
 
@@ -66,6 +66,6 @@ export const Team = {
     return root.teams.one({ id: source.id });
   },
   id({ source }) {
-    return source["id"];
+    return source['id'];
   }
 };
