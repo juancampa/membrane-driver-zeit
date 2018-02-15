@@ -10,11 +10,17 @@ export async function init() {
   });
 }
 
-export async function setAlias(args) {
+async function setAlias(args) {
   result = await post(`/v2/now/deployments/${args.uid}/aliases`, {
     alias: args.alias,
   });
   console.log(result);
+}
+
+export let Root = {
+  setAlias({ args }) {
+    return setAlias(args);
+  },
 }
 
 export const DeploymentsCollection = {
