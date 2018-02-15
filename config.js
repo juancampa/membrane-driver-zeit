@@ -4,6 +4,9 @@ environment
   .add('TOKEN', 'The API TOKEN')
 
 schema.type('Root')
+  .action('setAlias')
+    .param('alias', 'String')
+    .param('uid', 'String')
   .field('deployments', 'DeploymentsCollection')
   .field('teams', 'TeamsCollection')
 
@@ -22,9 +25,6 @@ schema.type('Deployment')
   .field('host', 'String')
   .field('state', 'String')
   .field('stateTs', 'String')
-  .action('setAlias')
-    .param('alias', 'String')
-    .param('uid', 'String')
 
 schema.type('TeamsCollection')
   .computed('one', 'Team')

@@ -17,11 +17,11 @@ async function setAlias(args) {
   console.log(result);
 }
 
-export let Root = {
-  setAlias({ args }) {
-    return setAlias(args);
-  },
-}
+// export let Root = {
+//   setAlias({ args }) {
+//     return setAlias(args);
+//   },
+// }
 
 export const DeploymentsCollection = {
   async one({ args }) {
