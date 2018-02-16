@@ -4,10 +4,10 @@ const { root } = program.refs;
 
 export async function init() {
   // Called when the program is run
-  return root.set({
+  await root.set({
     deployments: {},
     teams: {},
-    aliases: {}
+    aliases: {},
   });
 }
 
@@ -44,14 +44,14 @@ export const Deployment = {
     console.log(result);
     return result.status;
   },
-  async getAliases({ source }) {
-    const { uid } = source;
-    if (uid === undefined || uid === null) {
-      return null;
-    }
-    result = await get(`/v2/now/deployments/${uid}/aliases`);
-    return result.aliases;
-  },
+  // async getAliases({ source }) {
+  //   const { uid } = source;
+  //   if (uid === undefined || uid === null) {
+  //     return null;
+  //   }
+  //   result = await get(`/v2/now/deployments/${uid}/aliases`);
+  //   return result.aliases;
+  // },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
@@ -72,7 +72,17 @@ export const AliasesCollection = {
   }
 };
 
-export const Aliases = {
+// export let AliasesItem = {
+//   self({ source }) {
+//     const { uid } = source;
+//     if (uid === undefined || uid === null) {
+//       return null;
+//     }
+//     return root.aliases.one({ uid: source.uid });
+//   }
+// };
+
+export const Alias = {
   async self({ source }) {
     return root.aliases.one({ uid: source.uid });
   },
