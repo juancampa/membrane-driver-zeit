@@ -70,9 +70,19 @@ export const AliasesCollection = {
   }
 };
 
+export let AliasItem = {
+  self({ source }) {
+    const { uid } = source;
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    return root.aliases.one({ uid: source.uid });
+  }
+};
+
 export const Alias = {
   async self({ source }) {
-    return root.alias.one({ uid: source.uid });
+    return root.aliases.one({ uid: source.uid });
   },
   id({ source }) {
     return source['uid'];
