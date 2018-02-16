@@ -67,7 +67,7 @@ export const AliasesCollection = {
     return alias;
   },
   async items() {
-    const result = await get(`/v2/now/aliases/`);
+    const result = await get(`/teams/`);
     return result.aliases;
   }
 };
