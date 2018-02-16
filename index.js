@@ -62,7 +62,7 @@ export const AliasesCollection = {
   async one({ args }) {
     result = await get(`/v2/now/aliases/`);
     const alias = result.aliases.find(one => one.uid === args.uid);
-    return alias;
+    console.log(alias);
   },
   async items() {
     const result = await get(`/v2/now/aliases/`);
