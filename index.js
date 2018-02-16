@@ -84,7 +84,7 @@ export const Alias = {
   async self({ source }) {
     return root.aliases.one({ uid: source.uid });
   },
-  id({ source }) {
+  uid({ source }) {
     return source['uid'];
   }
 };
