@@ -68,7 +68,7 @@ export const AliasesCollection = {
   },
   async items() {
     const result = await get(`/v2/now/aliases/`);
-    result.aliases;
+    return result.aliases;
   }
 };
 
