@@ -43,14 +43,14 @@ export const Deployment = {
     });
     return result.status;
   },
-  // async getAliases({ source }) {
-  //   const { uid } = source;
-  //   if (uid === undefined || uid === null) {
-  //     return null;
-  //   }
-  //   result = await get(`/v2/now/deployments/${uid}/aliases`);
-  //   return result.aliases;
-  // },
+  async getAliases({ source }) {
+    const { uid } = source;
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    result = await get(`/v2/now/deployments/${uid}/aliases`);
+    return result.aliases;
+  },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
