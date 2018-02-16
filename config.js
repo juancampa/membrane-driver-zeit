@@ -15,7 +15,6 @@ schema.type('DeploymentsCollection')
 
 schema.type('DeploymentsItem')
   .field('uid', 'String')
-  .field('name', 'String')
   .computed('self', 'Deployment*')
 
 schema.type('Deployment')
