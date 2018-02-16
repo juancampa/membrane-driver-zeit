@@ -25,7 +25,7 @@ schema.type('Deployment')
   .action('setAlias')
     .param('alias', 'String')
   .computed('self', 'Deployment*')
-  .computed('getAliases', '[Alias]')
+  .computed('getAliases', '[Aliases]')
 
 schema.type('AliasesCollection')
   .computed('one', 'Aliases')
