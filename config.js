@@ -45,6 +45,12 @@ schema.type('Alias')
   .field('created', 'String')
   .field('deploymentId', 'String')
 
+  
+schema.type('TeamsCollection')
+  .computed('one', 'Team')
+    .param('id', 'String')
+  .computed('items', '[Team]')
+
 schema.type('Team')
   .computed('self', 'Team*')
   .field('id', 'String')
