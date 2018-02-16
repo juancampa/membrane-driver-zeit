@@ -37,7 +37,7 @@ export const Deployment = {
     if (uid === undefined || uid === null) {
       return null;
     }
-    result = await post(`/v2/now/deployments/${uid}/aliases`, {
+    result = await post(`/v2/now/deployments/${uid}/aliases/`, {
       alias: args.alias
     });
     console.log(result);
@@ -48,7 +48,7 @@ export const Deployment = {
     if (uid === undefined || uid === null) {
       return null;
     }
-    result = await get(`/v2/now/deployments/${uid}/aliases`);
+    result = await get(`/v2/now/deployments/${uid}/aliases/`);
     return result.aliases;
   },
   async self({ source }) {
