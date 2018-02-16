@@ -1,4 +1,5 @@
 import { get, post } from './client';
+import client from './client';
 
 const { root } = program.refs;
 
@@ -66,27 +67,14 @@ export const AliasesCollection = {
     return alias;
   },
   async items() {
-    const result = await get(`/v2/now/aliases/`);
-    result.aliases;
+    const result = await client.get(`/v2/now/aliases/`);
+    result.data.aliases;
   }
 };
-
-// export let AliasesItem = {
-//   self({ source }) {
-//     const { uid } = source;
-//     if (uid === undefined || uid === null) {
-//       return null;
-//     }
-//     return root.aliases.one({ uid: source.uid });
-//   }
-// };
 
 export const Alias = {
   async self({ source }) {
     return root.aliases.one({ uid: source.uid });
-  },
-  uid({ source }) {
-    return source['uid'];
   }
 };
 
