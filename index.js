@@ -40,7 +40,7 @@ export const Deployment = {
     result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias
     });
-    // console.log(result);
+    return result.status;
   },
   async getAliases({ source }) {
     const { uid } = source;
