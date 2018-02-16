@@ -49,7 +49,6 @@ export const Deployment = {
       return null;
     }
     result = await get(`/v2/now/deployments/${uid}/aliases`);
-    console.log(result);
     return result.aliases;
   },
   async self({ source }) {
