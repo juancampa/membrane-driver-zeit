@@ -37,7 +37,7 @@ export const Deployment = {
     if (uid === undefined || uid === null) {
       return null;
     }
-    result = await post(`/v2/now/deployments/${uid}/aliases/`, {
+    result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias
     });
     console.log(result);
@@ -48,8 +48,7 @@ export const Deployment = {
     if (uid === undefined || uid === null) {
       return null;
     }
-    result = await get(`/v2/now/deployments/${uid}/aliases/`);
-    console.log(result);
+    result = await get(`/v2/now/deployments/${uid}/aliases`);
     return result.aliases;
   },
   async self({ source }) {
@@ -64,25 +63,23 @@ export const AliasesCollection = {
   async one({ args }) {
     result = await get(`/v2/now/aliases/`);
     const alias = result.aliases.find(one => one.uid === args.uid);
-    console.log(alias);
     return alias;
   },
   async items() {
     const result = await get(`/v2/now/aliases/`);
-    console.log(result.aliases);
     result.aliases;
   }
 };
 
-export let AliasesItem = {
-  self({ source }) {
-    const { uid } = source;
-    if (uid === undefined || uid === null) {
-      return null;
-    }
-    return root.aliases.one({ uid: source.uid });
-  }
-};
+// export let AliasesItem = {
+//   self({ source }) {
+//     const { uid } = source;
+//     if (uid === undefined || uid === null) {
+//       return null;
+//     }
+//     return root.aliases.one({ uid: source.uid });
+//   }
+// };
 
 export const Alias = {
   async self({ source }) {
