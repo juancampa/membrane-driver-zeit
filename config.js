@@ -26,6 +26,7 @@ schema.type('Deployment')
     .param('alias', 'String')
   .computed('self', 'Deployment*')
   .computed('getAliases', '[Alias]')
+    .param('uid', 'String')
 
 schema.type('AliasesCollection')
   .computed('one', 'Alias')
