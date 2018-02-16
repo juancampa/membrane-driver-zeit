@@ -43,7 +43,7 @@ export const Deployment = {
     return result.status;
   },
 
-  async getAliases({ source }) {
+  async aliases({ source }) {
     const { uid } = source;
     if (uid === undefined || uid === null) {
       return null;
