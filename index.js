@@ -40,7 +40,7 @@ export const Deployment = {
     result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias
     });
-    console.log(result);
+    // console.log(result);
   },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
@@ -50,14 +50,32 @@ export const Deployment = {
   }
 };
 
-export const Instances = {
-  async items({ self, args }) {
+export const AliasesCollection = {
+  async one({ args }) {
+    result = await get(`/v2/now/aliases/`);
+    const alias = result.aliases.find(one => one.uid === args.uid);
+    return alias;
+  },
+  async byDeployment({ args }) {
     const { uid } = self.match(root.deployments.one());
     if (uid === undefined || uid === null) {
       return null;
     }
-    const result = await get(`/v1/now/deployments/${uid}/instances/`);
-    return result.instances;
+    result = await get(`/v2/now/deployments/${uid}/aliases`);
+    return result.aliases;
+  },
+  async items() {
+    const result = await get(`/v2/now/aliases/`);
+    return result.aliases;
+  }
+};
+
+export const Alias = {
+  async self({ source }) {
+    return root.alias.one({ uid: source.uid });
+  },
+  id({ source }) {
+    return source['uid'];
   }
 };
 
