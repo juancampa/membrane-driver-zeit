@@ -35,8 +35,6 @@ schema.type('AliasesCollection')
 schema.type('Alias')
   .computed('self', 'Alias*')
   .field('uid', 'String')
-  .field('alias', 'String')
-  .field('created', 'String')
 
 schema.type('TeamsCollection')
   .computed('one', 'Team')
