@@ -72,7 +72,7 @@ export const AliasesCollection = {
   }
 };
 
-export const Alias = {
+export const Aliases = {
   async self({ source }) {
     return root.aliases.one({ uid: source.uid });
   },
