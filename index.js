@@ -40,6 +40,7 @@ export const Deployment = {
     result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias
     });
+    console.log(result);
     return result.status;
   },
   async getAliases({ source }) {
@@ -63,12 +64,12 @@ export const AliasesCollection = {
     result = await get(`/v2/now/aliases/`);
     const alias = result.aliases.find(one => one.uid === args.uid);
     console.log(alias);
-    // return alias;
+    return alias;
   },
   async items() {
     const result = await get(`/v2/now/aliases/`);
     console.log(result.aliases);
-    // return result.aliases;
+    result.aliases;
   }
 };
 
