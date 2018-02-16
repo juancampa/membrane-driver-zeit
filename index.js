@@ -42,6 +42,14 @@ export const Deployment = {
     });
     // console.log(result);
   },
+  async getAliases({ source }) {
+    const { uid } = source;
+    if (uid === undefined || uid === null) {
+      return null;
+    }
+    result = await get(`/v2/now/deployments/${uid}/aliases`);
+    return result.aliases;
+  },
   async self({ source }) {
     return root.deployments.one({ uid: source.uid });
   },
@@ -55,14 +63,6 @@ export const AliasesCollection = {
     result = await get(`/v2/now/aliases/`);
     const alias = result.aliases.find(one => one.uid === args.uid);
     return alias;
-  },
-  async byDeployment({ args }) {
-    const { uid } = self.match(root.deployments.one());
-    if (uid === undefined || uid === null) {
-      return null;
-    }
-    result = await get(`/v2/now/deployments/${uid}/aliases`);
-    return result.aliases;
   },
   async items() {
     const result = await get(`/v2/now/aliases/`);
