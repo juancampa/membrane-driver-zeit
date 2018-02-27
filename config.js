@@ -8,6 +8,9 @@ schema.type('Root')
   .field('teams', 'TeamsCollection')
   .field('aliases', 'AliasesCollection')
 
+expressions
+  .add('url', '^https://api.zeit.co/v2/now/deployments/.*$')
+
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('uid', 'String')

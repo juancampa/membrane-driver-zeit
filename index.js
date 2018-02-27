@@ -10,6 +10,19 @@ export async function init() {
   });
 }
 
+export const parse = ({ name, value }) => {
+  switch (name) {
+    case 'url': {
+      const { pathname: path } = parseUrl(value, true);
+      const parts = path.split('/');
+      if (parts.length >= 5) {
+        return root.deployments.one({ uid: parts[4] });
+      }
+      break;
+    }
+  }
+}
+
 export const DeploymentsCollection = {
   async one({ args }) {
     const result = await get(`/v2/now/deployments/${args.uid}`);
