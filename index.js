@@ -16,16 +16,14 @@ export async function parse({ name, value }) {
     case 'url': {
       const resultTeams = await get(`/teams/`)
       // const uid = await Promise.all(
-      const uid = resultTeams.teams.map(async (team) => {
+      resultTeams.teams.map(async (team) => {
         const result = await get(`/v2/now/deployments?teamId=${team.id}`)
         const dep = result.deployments.find((d) => d.url === value)
         if (dep) {
-          return dep.uid
+          return root.deployments.one({ uid: dep.uid })
         }
       })
       // )
-      console.log(typeof uid)
-      console.log(uid)
       // if (uid) {
       //   return root.deployments.one({ uid: uid })
       // }
