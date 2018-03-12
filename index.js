@@ -21,10 +21,10 @@ export async function parse({ name, value }) {
           `/v2/now/deployments?teamId=${team.id}`,
         )
         console.log(resultDeployments)
-        const { uid } = resultDeployments.deployments.find(
+        const deploy = resultDeployments.deployments.find(
           (d) => d.url === value,
         )
-        return uid
+        return deploy.uid
       })
 
       console.log(uid)
