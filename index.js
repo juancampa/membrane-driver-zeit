@@ -12,6 +12,7 @@ export async function init() {
 }
 
 export async function parse({ name, value }) {
+  console.log('Parsing', name, value)
   switch (name) {
     case 'url': {
       let uid = ''
