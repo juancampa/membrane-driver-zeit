@@ -1,0 +1,257 @@
+{
+ "imports": [],
+ "dependencies": [],
+ "environment": [
+  {
+   "name": "TOKEN",
+   "description": "The API TOKEN"
+  }
+ ],
+ "endpoints": [],
+ "schema": {
+  "types": [
+   {
+    "name": "Root",
+    "fields": [
+     {
+      "name": "deployments",
+      "type": "DeploymentsCollection"
+     },
+     {
+      "name": "teams",
+      "type": "TeamsCollection"
+     },
+     {
+      "name": "aliases",
+      "type": "AliasesCollection"
+     }
+    ],
+    "computedFields": [],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "DeploymentsCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Deployment",
+      "params": [
+       {
+        "name": "uid",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "DeploymentsItem"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "DeploymentsItem",
+    "fields": [
+     {
+      "name": "uid",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Deployment"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Deployment",
+    "fields": [
+     {
+      "name": "uid",
+      "type": "String"
+     },
+     {
+      "name": "host",
+      "type": "String"
+     },
+     {
+      "name": "state",
+      "type": "String"
+     },
+     {
+      "name": "stateTs",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Deployment"
+      }
+     },
+     {
+      "name": "aliases",
+      "type": "List",
+      "ofType": {
+       "type": "Alias"
+      }
+     }
+    ],
+    "actions": [
+     {
+      "name": "setAlias",
+      "type": "Int",
+      "params": [
+       {
+        "name": "alias",
+        "type": "String"
+       }
+      ]
+     }
+    ],
+    "events": []
+   },
+   {
+    "name": "AliasesCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Alias",
+      "params": [
+       {
+        "name": "uid",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Alias"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Alias",
+    "fields": [
+     {
+      "name": "uid",
+      "type": "String"
+     },
+     {
+      "name": "alias",
+      "type": "String"
+     },
+     {
+      "name": "created",
+      "type": "String"
+     },
+     {
+      "name": "deploymentId",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Alias"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "TeamsCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Team",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Team"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Team",
+    "fields": [
+     {
+      "name": "id",
+      "type": "String"
+     },
+     {
+      "name": "slug",
+      "type": "String"
+     },
+     {
+      "name": "name",
+      "type": "String"
+     },
+     {
+      "name": "creatorId",
+      "type": "String"
+     },
+     {
+      "name": "avatar",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Team"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   }
+  ]
+ },
+ "expressions": [
+  {
+   "name": "url",
+   "pattern": "^site-.*$",
+   "description": ""
+  }
+ ],
+ "database": [],
+ "isDriver": false
+}
