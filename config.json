@@ -248,7 +248,7 @@
  "expressions": [
   {
    "name": "url",
-   "pattern": "^https://(?:[w-_]+.)+(?:now).sh",
+   "pattern": "^https?://(.*)",
    "description": ""
   }
  ],

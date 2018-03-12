@@ -9,7 +9,7 @@ schema.type('Root')
   .field('aliases', 'AliasesCollection')
 
 expressions
-  .add('url', '^https:\/\/(?:[\w\-\_]+\.)+(?:now).sh')
+  .add('url', '^https?:\/\/(.*)')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
