@@ -15,7 +15,7 @@ export async function parse({ name, value }) {
   switch (name) {
     case 'url': {
       const resultTeams = await get(`/teams/`);
-      const uid = resultTeams.teams.map(async (team) => {
+      const uid = await resultTeams.teams.map(async (team) => {
         const resultDeployments = await get(
           `/v2/now/deployments?teamId=${team.id}`,
         );
