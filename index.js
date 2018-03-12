@@ -15,19 +15,17 @@ export async function parse({ name, value }) {
   switch (name) {
     case 'url': {
       const resultTeams = await get(`/teams/`)
-      console.log(resultTeams)
       const uid = resultTeams.teams.map(async (team) => {
         const resultDeployments = await get(
           `/v2/now/deployments?teamId=${team.id}`,
         )
-        console.log(resultDeployments)
-        const deploy = resultDeployments.deployments.find(
-          (d) => d.url === value,
-        )
-        return deploy.uid
-        console.log(deploy.uid)
+        const dep = resultDeployments.deployments.find((d) => d.url === value)
+        if (dep) {
+          return dep.uid;
+          console.log('dep.uid);
+        }
       })
-      console.log('UID' + uid)
+      console.log(uid)
 
       // const { pathname: path } = parseUrl(value, true);
       // const parts = path.split('/');
