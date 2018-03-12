@@ -14,16 +14,18 @@ export async function init() {
 export async function parse({ name, value }) {
   switch (name) {
     case 'url': {
-      const data = await get(`/teams/`)
+      let uid = ''
+      const res = await get(`/teams/`)
       await Promise.all(
-        data.teams.map(async function(team) {
+        res.teams.map(async (team) => {
           const result = await get(`/v2/now/deployments?teamId=${team.id}`)
           const dep = result.deployments.find((d) => d.url === value)
           if (dep) {
-            return root.deployments.one({ uid: dep.uid })
+            uid = dep.uid
           }
         }),
       )
+      return root.deployments.one({ uid: uid })
       break
     }
   }
