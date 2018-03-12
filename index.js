@@ -17,8 +17,10 @@ export async function parse({ name, value }) {
     case 'url': {
       const result = await get(`/v2/now/deployments`)
       const dep = result.deployments.find((d) => d.url === value)
+      console.log(dep)
       if (dep) {
         uid = dep.uid
+        console.log(uid)
         return root.deployments.one({ uid: uid })
       }
       break
