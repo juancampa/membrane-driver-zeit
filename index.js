@@ -20,7 +20,7 @@ export async function parse({ name, value }) {
           const result = await get(`/v2/now/deployments?teamId=${team.id}`)
           const dep = result.deployments.find((d) => d.url === value)
           if (dep) {
-            return root.deployments.one({ uid: uid })
+            return root.deployments.one({ uid: dep.uid })
           }
         }),
       )
