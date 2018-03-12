@@ -21,6 +21,8 @@ export async function parse({ name, value }) {
           const dep = result.deployments.find((d) => d.url === value)
           if (dep) {
             return dep.uid
+          } else {
+            return null
           }
         }),
       )
