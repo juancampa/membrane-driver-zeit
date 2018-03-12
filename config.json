@@ -248,7 +248,7 @@
  "expressions": [
   {
    "name": "url",
-   "pattern": "^site-.*$",
+   "pattern": "^.*$",
    "description": ""
   }
  ],
