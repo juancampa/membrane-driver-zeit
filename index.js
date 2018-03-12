@@ -23,7 +23,7 @@ export async function parse({ name, value }) {
           const dep = resultDeployments.deployments.find((d) => d.url === value)
           if (dep) {
             console.log(dep)
-            return dep
+            return dep.uid
           }
         }),
       )
