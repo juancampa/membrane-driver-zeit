@@ -17,23 +17,16 @@ export async function parse({ name, value }) {
       const resultTeams = await get(`/teams/`)
       const uid = await Promise.all(
         resultTeams.teams.map(async (team) => {
-          const resultDeployments = await get(
-            `/v2/now/deployments?teamId=${team.id}`,
-          )
-          const dep = resultDeployments.deployments.find((d) => d.url === value)
+          const result = await get(`/v2/now/deployments?teamId=${team.id}`)
+          const dep = result.deployments.find((d) => d.url === value)
           if (dep) {
-            console.log(dep)
             return dep.uid
           }
         }),
       )
-      console.log('UID' + uid)
-
-      // const { pathname: path } = parseUrl(value, true);
-      // const parts = path.split('/');
-      // if (parts.length >= 5) {
-      //   return root.deployments.one({ uid: parts[4] });
-      // }
+      if (uid) {
+        return root.deployments.one({ uid: uid })
+      }
       break
     }
   }
