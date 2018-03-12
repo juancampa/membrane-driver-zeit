@@ -25,8 +25,10 @@ export async function parse({ name, value }) {
           (d) => d.url === value,
         )
         return deploy.uid
+        console.log(deploy.uid)
       })
-      console.log(deploy.uid)
+      console.log('UID' + uid)
+
       // const { pathname: path } = parseUrl(value, true);
       // const parts = path.split('/');
       // if (parts.length >= 5) {
