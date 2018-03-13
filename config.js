@@ -14,6 +14,7 @@ expressions
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('uid', 'String')
+    .param('teamId', 'String')
   .computed('items', '[DeploymentsItem]')
     .param('teamId', 'String')
 
