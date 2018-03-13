@@ -9,12 +9,13 @@ schema.type('Root')
   .field('aliases', 'AliasesCollection')
 
 expressions
-  .add('url', '^https?:\/\/(.*)')
+  .add('url', '^[\S]+')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('uid', 'String')
   .computed('items', '[DeploymentsItem]')
+    .param('teamId', 'String')
 
 schema.type('DeploymentsItem')
   .field('uid', 'String')

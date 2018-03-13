@@ -19,8 +19,7 @@ export async function parse({ name, value }) {
       const dep = result.deployments.find((d) => d.url === value)
       console.log(dep)
       if (dep) {
-        uid = dep.uid
-        console.log(uid)
+        const uid = dep.uid
         return root.deployments.one({ uid: uid })
       }
       break
@@ -30,17 +29,28 @@ export async function parse({ name, value }) {
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    const result = await get(`/v2/now/deployments/${args.uid}`)
-    return result
+    if (args.teamId) {
+      const result = await get(
+        `/v2/now/deployments/${args.uid}?teamId=${args.teamId}`,
+      )
+      return result
+    } else {
+      const result = await get(`/v2/now/deployments/${args.uid}`)
+      return result
+    }
   },
-  async items() {
-    const result = await get(`/v2/now/deployments/`)
-    return result.deployments
+  async items({ args }) {
+    if (args.teamId) {
+      const result = await get(`/v2/now/deployments/?teamId=${args.teamId}`)
+      return result.deployments
+    } else {
+      const result = await get(`/v2/now/deployments/`)
+      return result.deployments
+    }
   },
 }
 
 // export const ScaleConfiguration = {
-
 // };
 
 export let DeploymentsItem = {
