@@ -15,13 +15,27 @@ export async function parse({ name, value }) {
   console.log('Parsing', name, value)
   switch (name) {
     case 'url': {
-      const result = await get(`/v2/now/deployments`)
-      const dep = result.deployments.find((d) => d.url === value)
-      console.log(dep)
-      if (dep) {
-        const uid = dep.uid
-        return root.deployments.one({ uid: uid })
+      let uid = ''
+      let teamId = ''
+      const res = await get(`/teams/`)
+      await Promise.all(
+        res.teams.map(async (team) => {
+          const result = await get(`/v2/now/deployments?teamId=${team.id}`)
+          const dep = result.deployments.find((d) => d.url === value)
+          if (dep) {
+            uid = dep.uid
+            teamId = team.id
+          }
+        }),
+      )
+      if (!uid) {
+        const result = await get(`/v2/now/deployments`)
+        const dep = result.deployments.find((d) => d.url === value)
+        if (dep) {
+          uid = dep.uid
+        }
       }
+      return root.deployments.one({ uid: uid, teamId:teamId })
       break
     }
   }
@@ -43,7 +57,6 @@ export const DeploymentsCollection = {
     console.log(args)
     if (args.teamId) {
       const result = await get(`/v2/now/deployments?teamId=${args.teamId}`)
-      console.log('RESULT' + result.deployments)
       return result.deployments
     } else {
       const result = await get(`/v2/now/deployments/`)

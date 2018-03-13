@@ -41,6 +41,10 @@
        {
         "name": "uid",
         "type": "String"
+       },
+       {
+        "name": "teamId",
+        "type": "String"
        }
       ]
      },
