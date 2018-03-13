@@ -41,10 +41,6 @@
        {
         "name": "uid",
         "type": "String"
-       },
-       {
-        "name": "teamId",
-        "type": "String"
        }
       ]
      },
@@ -53,13 +49,7 @@
       "type": "List",
       "ofType": {
        "type": "DeploymentsItem"
-      },
-      "params": [
-       {
-        "name": "teamId",
-        "type": "String"
-       }
-      ]
+      }
      }
     ],
     "actions": [],
@@ -239,6 +229,10 @@
      {
       "name": "avatar",
       "type": "String"
+     },
+     {
+      "name": "deployments",
+      "type": "DeploymentsCollection"
      }
     ],
     "computedFields": [
@@ -258,7 +252,7 @@
  "expressions": [
   {
    "name": "url",
-   "pattern": "^[S]+",
+   "pattern": "^[a-zA-Z0-9-]+.now.sh$",
    "description": ""
   }
  ],

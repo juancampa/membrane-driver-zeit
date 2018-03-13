@@ -9,14 +9,12 @@ schema.type('Root')
   .field('aliases', 'AliasesCollection')
 
 expressions
-  .add('url', '^[\S]+')
+  .add('url', '^[a-zA-Z0-9-]+\.now\.sh$')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
     .param('uid', 'String')
-    .param('teamId', 'String')
   .computed('items', '[DeploymentsItem]')
-    .param('teamId', 'String')
 
 schema.type('DeploymentsItem')
   .field('uid', 'String')
@@ -61,3 +59,4 @@ schema.type('Team')
   .field('name', 'String')
   .field('creatorId', 'String')
   .field('avatar', 'String')
+  .field('deployments', 'DeploymentsCollection')

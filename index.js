@@ -11,41 +11,45 @@ export async function init() {
   })
 }
 
-export async function parse({ name, value }) {
-  console.log('Parsing', name, value)
-  switch (name) {
-    case 'url': {
-      let uid = ''
-      let teamId = ''
-      const res = await get(`/teams/`)
-      await Promise.all(
-        res.teams.map(async (team) => {
-          const result = await get(`/v2/now/deployments?teamId=${team.id}`)
-          const dep = result.deployments.find((d) => d.url === value)
-          if (dep) {
-            uid = dep.uid
-            teamId = team.id
-          }
-        }),
-      )
-      if (!uid) {
-        const result = await get(`/v2/now/deployments`)
-        const dep = result.deployments.find((d) => d.url === value)
-        if (dep) {
-          uid = dep.uid
-        }
-      }
-      return root.deployments.one({ uid: uid, teamId:teamId })
-      break
-    }
-  }
-}
+// export async function parse({ name, value }) {
+//   console.log('Parsing', name, value)
+//   switch (name) {
+//     case 'url': {
+//       let uid = ''
+//       // let teamId = ''
+
+//       const res = await get(`/v2/now/deployments`)
+//       const dep = res.deployments.find((d) => d.url === value)
+
+//       if (dep) {
+//         uid = dep.uid
+//       }
+
+//       if (!uid) {
+//         const res = await get(`/teams/`)
+//         await Promise.all(
+//           res.teams.map(async (team) => {
+//             const result = await get(`/v2/now/deployments?teamId=${team.id}`)
+//             const depT = result.deployments.find((d) => d.url === value)
+//             if (depT) {
+//               uid = depT.uid
+//               // teamId = team.id
+//             }
+//           }),
+//         )
+//       }
+
+//       return root.deployments.one({ uid: uid })
+//       break
+//     }
+//   }
+// }
 
 export const DeploymentsCollection = {
   async one({ args }) {
-    if (args.teamId) {
+    if (teamId) {
       const result = await get(
-        `/v2/now/deployments/${args.uid}?teamId=${args.teamId}`,
+        `/v2/now/deployments/${args.uid}?teamId=${teamId}`,
       )
       return result
     } else {
@@ -53,10 +57,10 @@ export const DeploymentsCollection = {
       return result
     }
   },
-  async items({ args }) {
-    console.log(args)
-    if (args.teamId) {
-      const result = await get(`/v2/now/deployments?teamId=${args.teamId}`)
+  async items({ args, self }) {
+    const { id: teamId } = self.match(root.teams)
+    if (teamId) {
+      const result = await get(`/v2/now/deployments?teamId=${teamId}`)
       return result.deployments
     } else {
       const result = await get(`/v2/now/deployments/`)
@@ -64,14 +68,13 @@ export const DeploymentsCollection = {
     }
   },
 }
-
 // export const ScaleConfiguration = {
+
 // };
 
 export let DeploymentsItem = {
   self({ source }) {
     const { uid } = source
-    console.log(source);
     if (uid === undefined || uid === null) {
       return null
     }
