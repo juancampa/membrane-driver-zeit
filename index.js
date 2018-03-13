@@ -43,7 +43,7 @@ export const DeploymentsCollection = {
     console.log(args)
     if (args.teamId) {
       const result = await get(`/v2/now/deployments?teamId=${args.teamId}`)
-      console.log('RESULT' + result)
+      console.log('RESULT' + result.deployments)
       return result.deployments
     } else {
       const result = await get(`/v2/now/deployments/`)
