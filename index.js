@@ -71,6 +71,7 @@ export const DeploymentsCollection = {
 export let DeploymentsItem = {
   self({ source }) {
     const { uid } = source
+    console.log(source);
     if (uid === undefined || uid === null) {
       return null
     }
