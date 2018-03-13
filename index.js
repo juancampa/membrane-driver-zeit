@@ -141,4 +141,7 @@ export const Team = {
   async self({ source }) {
     return root.teams.one({ id: source.id })
   },
+  async deployments() {
+    return {}
+  }
 }
