@@ -21,9 +21,10 @@ export async function parse({ name, value }) {
 
       const res = await get(`/v2/now/deployments`)
       const dep = res.deployments.find((d) => d.url === value)
-
+      console.log(res)
       if (dep) {
         uid = dep.uid
+        console.log('Es Personal')
         return root.deployments.one({ uid: uid })
       }
 
@@ -40,7 +41,8 @@ export async function parse({ name, value }) {
           }),
         )
       }
-      return root.teams.one({ id: teamId }).deployments.one({ uid: uid })
+      console.log('Es Team')
+      return root.teams.one({ id: teamId }).deployments().one({ uid: uid })
       break
     }
   }
@@ -115,6 +117,9 @@ export const Deployment = {
   async self({ source }) {
     return root.deployments.one({ uid: source.uid })
   },
+  instances() {
+    return {}
+  },
 }
 
 export const AliasesCollection = {
@@ -136,16 +141,19 @@ export const Alias = {
 }
 
 export const InstanceCollection = {
-  async one({ self }) {
+  async one({ args, self }) {
     const { uid } = self.match(root.deployments.one())
-    result = await get(`/v1/now/deployments/${args.uid}/instances`)
-    const instance = result.instances.find((one) => one.uid === args.uid)
+    const instanceId = args.uid
+    result = await get(`/v1/now/deployments/${uid}/instances`)
+    const instance = result.instances.find(
+      (instance) => instance.uid === instanceId,
+    )
     return instance
   },
   async items({ self }) {
     const { uid } = self.match(root.deployments.one())
     const result = await get(`/v1/now/deployments/${uid}/instances`)
-    console.log(result);
+    console.log(result)
     return result.instances
   },
 }

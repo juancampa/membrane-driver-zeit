@@ -101,10 +101,6 @@
      {
       "name": "scale",
       "type": "ScaleConfiguration"
-     },
-     {
-      "name": "instances",
-      "type": "InstanceCollection"
      }
     ],
     "computedFields": [
@@ -121,6 +117,10 @@
       "ofType": {
        "type": "Alias"
       }
+     },
+     {
+      "name": "instances",
+      "type": "InstanceCollection"
      }
     ],
     "actions": [
@@ -177,7 +177,13 @@
     "computedFields": [
      {
       "name": "one",
-      "type": "Instance"
+      "type": "Instance",
+      "params": [
+       {
+        "name": "uid",
+        "type": "String"
+       }
+      ]
      },
      {
       "name": "items",
