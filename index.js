@@ -16,13 +16,14 @@ export async function init() {
 //   switch (name) {
 //     case 'url': {
 //       let uid = ''
-//       // let teamId = ''
+//       let teamId = ''
 
 //       const res = await get(`/v2/now/deployments`)
 //       const dep = res.deployments.find((d) => d.url === value)
 
 //       if (dep) {
 //         uid = dep.uid
+//         return root.deployments.one({ uid: uid })
 //       }
 
 //       if (!uid) {
@@ -33,20 +34,21 @@ export async function init() {
 //             const depT = result.deployments.find((d) => d.url === value)
 //             if (depT) {
 //               uid = depT.uid
-//               // teamId = team.id
+//               teamId = team.id
 //             }
 //           }),
 //         )
 //       }
-
-//       return root.deployments.one({ uid: uid })
+//       return root.teams({ id: teamId }).deployments.one({ uid: uid })
 //       break
 //     }
 //   }
 // }
 
 export const DeploymentsCollection = {
-  async one({ args }) {
+  async one({ args, self }) {
+    const { id: teamId } = self.match(root.teams)
+    console.log('teamId' + teamId);
     if (teamId) {
       const result = await get(
         `/v2/now/deployments/${args.uid}?teamId=${teamId}`,
@@ -68,9 +70,7 @@ export const DeploymentsCollection = {
     }
   },
 }
-// export const ScaleConfiguration = {
-
-// };
+export const ScaleConfiguration = {}
 
 export let DeploymentsItem = {
   self({ source }) {
@@ -141,7 +141,7 @@ export const Team = {
   async self({ source }) {
     return root.teams.one({ id: source.id })
   },
-  async deployments() {
+  deployments() {
     return {}
-  }
+  },
 }

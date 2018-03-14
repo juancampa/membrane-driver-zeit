@@ -93,6 +93,10 @@
      {
       "name": "stateTs",
       "type": "String"
+     },
+     {
+      "name": "scale",
+      "type": "ScaleConfiguration"
      }
     ],
     "computedFields": [
@@ -123,6 +127,26 @@
       ]
      }
     ],
+    "events": []
+   },
+   {
+    "name": "ScaleConfiguration",
+    "fields": [
+     {
+      "name": "current",
+      "type": "Int"
+     },
+     {
+      "name": "min",
+      "type": "Int"
+     },
+     {
+      "name": "max",
+      "type": "Int"
+     }
+    ],
+    "computedFields": [],
+    "actions": [],
     "events": []
    },
    {
@@ -229,10 +253,6 @@
      {
       "name": "avatar",
       "type": "String"
-     },
-     {
-      "name": "deployments",
-      "type": "DeploymentsCollection"
      }
     ],
     "computedFields": [
@@ -242,6 +262,10 @@
       "ofType": {
        "type": "Team"
       }
+     },
+     {
+      "name": "deployments",
+      "type": "DeploymentsCollection"
      }
     ],
     "actions": [],
@@ -249,13 +273,7 @@
    }
   ]
  },
- "expressions": [
-  {
-   "name": "url",
-   "pattern": "^[a-zA-Z0-9-]+.now.sh$",
-   "description": ""
-  }
- ],
+ "expressions": [],
  "database": [],
  "isDriver": false
 }

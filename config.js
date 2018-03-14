@@ -8,8 +8,8 @@ schema.type('Root')
   .field('teams', 'TeamsCollection')
   .field('aliases', 'AliasesCollection')
 
-expressions
-  .add('url', '^[a-zA-Z0-9-]+\.now\.sh$')
+// expressions
+//   .add('url', '^[a-zA-Z0-9-]+\.now\.sh$')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
@@ -26,14 +26,15 @@ schema.type('Deployment')
   .field('host', 'String')
   .field('state', 'String')
   .field('stateTs', 'String')
+  .field('scale','ScaleConfiguration')
   .action('setAlias')
     .param('alias', 'String')
   .computed('aliases', '[Alias]')
 
-// schema.type('ScaleConfiguration')
-//   .field('current', 'Int')
-//   .field('min', 'Int')
-//   .field('max', 'Int')
+schema.type('ScaleConfiguration')
+  .field('current', 'Int')
+  .field('min', 'Int')
+  .field('max', 'Int')
 
 schema.type('AliasesCollection')
   .computed('one', 'Alias')
