@@ -8,6 +8,7 @@ export async function init() {
     deployments: {},
     teams: {},
     aliases: {},
+    instances: {},
   })
 }
 
@@ -69,15 +70,14 @@ export const DeploymentsCollection = {
     }
   },
 }
-export let ScaleConfiguration = {}
 
 export let DeploymentsItem = {
-  self({ source }) {
+  self({ source, self, parent }) {
     const { uid } = source
     if (uid === undefined || uid === null) {
       return null
     }
-    return root.deployments.one({ uid: source.uid })
+    return self || parent.ref.pop().push('one', { uid: source.uid })
   },
 }
 
@@ -92,7 +92,17 @@ export const Deployment = {
     })
     return result.status
   },
-
+  async setScaleConfiguration({ self, args }) {
+    const { uid } = self.match(root.deployments.one())
+    if (uid === undefined || uid === null) {
+      return null
+    }
+    result = await post(`/v1/now/deployments/${uid}/instances`, {
+      min: args.min,
+      max: args.max,
+    })
+    return result.status
+  },
   async aliases({ source }) {
     const { uid } = source
     if (uid === undefined || uid === null) {
@@ -122,6 +132,27 @@ export const AliasesCollection = {
 export const Alias = {
   async self({ source }) {
     return root.aliases.one({ uid: source.uid })
+  },
+}
+
+export const InstanceCollection = {
+  async one({ self }) {
+    const { uid } = self.match(root.deployments.one())
+    result = await get(`/v1/now/deployments/${args.uid}/instances`)
+    const instance = result.instances.find((one) => one.uid === args.uid)
+    return instance
+  },
+  async items({ self }) {
+    const { uid } = self.match(root.deployments.one())
+    const result = await get(`/v1/now/deployments/${uid}/instances`)
+    console.log(result);
+    return result.instances
+  },
+}
+
+export const Instance = {
+  async self({ source }) {
+    return root.instances.one({ uid: source.uid })
   },
 }
 

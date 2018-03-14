@@ -24,6 +24,10 @@
      {
       "name": "aliases",
       "type": "AliasesCollection"
+     },
+     {
+      "name": "instances",
+      "type": "InstanceCollection"
      }
     ],
     "computedFields": [],
@@ -97,6 +101,10 @@
      {
       "name": "scale",
       "type": "ScaleConfiguration"
+     },
+     {
+      "name": "instances",
+      "type": "InstanceCollection"
      }
     ],
     "computedFields": [
@@ -116,6 +124,20 @@
      }
     ],
     "actions": [
+     {
+      "name": "setScaleConfiguration",
+      "type": "Int",
+      "params": [
+       {
+        "name": "min",
+        "type": "Int"
+       },
+       {
+        "name": "max",
+        "type": "Int"
+       }
+      ]
+     },
      {
       "name": "setAlias",
       "type": "Int",
@@ -146,6 +168,49 @@
      }
     ],
     "computedFields": [],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "InstanceCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Instance"
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Instance"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Instance",
+    "fields": [
+     {
+      "name": "uid",
+      "type": "String"
+     },
+     {
+      "name": "url",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Instance"
+      }
+     }
+    ],
     "actions": [],
     "events": []
    },
