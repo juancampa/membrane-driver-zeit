@@ -273,7 +273,13 @@
    }
   ]
  },
- "expressions": [],
+ "expressions": [
+  {
+   "name": "url",
+   "pattern": "^[a-zA-Z0-9-]+.now.sh$",
+   "description": ""
+  }
+ ],
  "database": [],
  "isDriver": false
 }

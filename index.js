@@ -11,44 +11,43 @@ export async function init() {
   })
 }
 
-// export async function parse({ name, value }) {
-//   console.log('Parsing', name, value)
-//   switch (name) {
-//     case 'url': {
-//       let uid = ''
-//       let teamId = ''
+export async function parse({ name, value }) {
+  console.log('Parsing', name, value)
+  switch (name) {
+    case 'url': {
+      let uid = ''
+      let teamId = ''
 
-//       const res = await get(`/v2/now/deployments`)
-//       const dep = res.deployments.find((d) => d.url === value)
+      const res = await get(`/v2/now/deployments`)
+      const dep = res.deployments.find((d) => d.url === value)
 
-//       if (dep) {
-//         uid = dep.uid
-//         return root.deployments.one({ uid: uid })
-//       }
+      if (dep) {
+        uid = dep.uid
+        return root.deployments.one({ uid: uid })
+      }
 
-//       if (!uid) {
-//         const res = await get(`/teams/`)
-//         await Promise.all(
-//           res.teams.map(async (team) => {
-//             const result = await get(`/v2/now/deployments?teamId=${team.id}`)
-//             const depT = result.deployments.find((d) => d.url === value)
-//             if (depT) {
-//               uid = depT.uid
-//               teamId = team.id
-//             }
-//           }),
-//         )
-//       }
-//       return root.teams({ id: teamId }).deployments.one({ uid: uid })
-//       break
-//     }
-//   }
-// }
+      if (!uid) {
+        const res = await get(`/teams/`)
+        await Promise.all(
+          res.teams.map(async (team) => {
+            const result = await get(`/v2/now/deployments?teamId=${team.id}`)
+            const depT = result.deployments.find((d) => d.url === value)
+            if (depT) {
+              uid = depT.uid
+              teamId = team.id
+            }
+          }),
+        )
+      }
+      return root.teams.one({ id: teamId }).deployments.one({ uid: uid })
+      break
+    }
+  }
+}
 
 export const DeploymentsCollection = {
   async one({ args, self }) {
     const { id: teamId } = self.match(root.teams)
-    console.log('teamId' + teamId);
     if (teamId) {
       const result = await get(
         `/v2/now/deployments/${args.uid}?teamId=${teamId}`,
@@ -70,7 +69,7 @@ export const DeploymentsCollection = {
     }
   },
 }
-export const ScaleConfiguration = {}
+export let ScaleConfiguration = {}
 
 export let DeploymentsItem = {
   self({ source }) {

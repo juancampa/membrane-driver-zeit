@@ -8,8 +8,8 @@ schema.type('Root')
   .field('teams', 'TeamsCollection')
   .field('aliases', 'AliasesCollection')
 
-// expressions
-//   .add('url', '^[a-zA-Z0-9-]+\.now\.sh$')
+expressions
+  .add('url', '^[a-zA-Z0-9-]+\.now\.sh$')
 
 schema.type('DeploymentsCollection')
   .computed('one', 'Deployment')
