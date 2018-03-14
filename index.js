@@ -42,7 +42,10 @@ export async function parse({ name, value }) {
         )
       }
       console.log('Es Team')
-      return root.teams.one({ id: teamId }).deployments().one({ uid: uid })
+      return root.teams
+        .one({ id: teamId })
+        .deployments()
+        .one({ uid: uid })
       break
     }
   }
@@ -50,7 +53,7 @@ export async function parse({ name, value }) {
 
 export const DeploymentsCollection = {
   async one({ args, self }) {
-    const { id: teamId } = self.match(root.teams)
+    const { id: teamId } = self.match(root.teams.one())
     if (teamId) {
       const result = await get(
         `/v2/now/deployments/${args.uid}?teamId=${teamId}`,
@@ -62,7 +65,8 @@ export const DeploymentsCollection = {
     }
   },
   async items({ args, self }) {
-    const { id: teamId } = self.match(root.teams)
+    const { id: teamId } = self.match(root.teams.one())
+    console.log('team id ' + teamId)
     if (teamId) {
       const result = await get(`/v2/now/deployments?teamId=${teamId}`)
       return result.deployments
