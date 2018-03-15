@@ -24,10 +24,6 @@
      {
       "name": "aliases",
       "type": "AliasesCollection"
-     },
-     {
-      "name": "instances",
-      "type": "InstanceCollection"
      }
     ],
     "computedFields": [],
@@ -117,10 +113,6 @@
       "ofType": {
        "type": "Alias"
       }
-     },
-     {
-      "name": "instances",
-      "type": "InstanceCollection"
      }
     ],
     "actions": [
@@ -168,55 +160,6 @@
      }
     ],
     "computedFields": [],
-    "actions": [],
-    "events": []
-   },
-   {
-    "name": "InstanceCollection",
-    "fields": [],
-    "computedFields": [
-     {
-      "name": "one",
-      "type": "Instance",
-      "params": [
-       {
-        "name": "uid",
-        "type": "String"
-       }
-      ]
-     },
-     {
-      "name": "items",
-      "type": "List",
-      "ofType": {
-       "type": "Instance"
-      }
-     }
-    ],
-    "actions": [],
-    "events": []
-   },
-   {
-    "name": "Instance",
-    "fields": [
-     {
-      "name": "uid",
-      "type": "String"
-     },
-     {
-      "name": "url",
-      "type": "String"
-     }
-    ],
-    "computedFields": [
-     {
-      "name": "self",
-      "type": "Ref",
-      "ofType": {
-       "type": "Instance"
-      }
-     }
-    ],
     "actions": [],
     "events": []
    },
