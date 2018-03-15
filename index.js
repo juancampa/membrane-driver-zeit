@@ -24,7 +24,6 @@ export async function parse({ name, value }) {
       console.log(res)
       if (dep) {
         uid = dep.uid
-        console.log('Es Personal')
         return root.deployments.one({ uid: uid })
       }
 
@@ -41,7 +40,6 @@ export async function parse({ name, value }) {
           }),
         )
       }
-      console.log('Es Team')
       return root.teams
         .one({ id: teamId })
         .deployments()
