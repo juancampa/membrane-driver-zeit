@@ -8,7 +8,7 @@ export async function init() {
     deployments: {},
     teams: {},
     aliases: {},
-    instances: {},
+    // instances: {},
   })
 }
 
@@ -144,29 +144,29 @@ export const Alias = {
   },
 }
 
-export const InstanceCollection = {
-  async one({ args, self }) {
-    const { uid } = self.match(root.deployments.one())
-    const instanceId = args.uid
-    result = await get(`/v1/now/deployments/${uid}/instances`)
-    const instance = result.instances.find(
-      (instance) => instance.uid === instanceId,
-    )
-    return instance
-  },
-  async items({ self }) {
-    const { uid } = self.match(root.deployments.one())
-    const result = await get(`/v1/now/deployments/${uid}/instances`)
-    console.log(result)
-    return result.instances
-  },
-}
+// export const InstanceCollection = {
+//   async one({ args, self }) {
+//     const { uid } = self.match(root.deployments.one())
+//     const instanceId = args.uid
+//     result = await get(`/v1/now/deployments/${uid}/instances`)
+//     const instance = result.instances.find(
+//       (instance) => instance.uid === instanceId,
+//     )
+//     return instance
+//   },
+//   async items({ self }) {
+//     const { uid } = self.match(root.deployments.one())
+//     const result = await get(`/v1/now/deployments/${uid}/instances`)
+//     console.log(result)
+//     return result.instances
+//   },
+// }
 
-export const Instance = {
-  async self({ source }) {
-    return root.instances.one({ uid: source.uid })
-  },
-}
+// export const Instance = {
+//   async self({ source }) {
+//     return root.instances.one({ uid: source.uid })
+//   },
+// }
 
 export const TeamsCollection = {
   async one({ args }) {
