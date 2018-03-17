@@ -91,28 +91,31 @@ export const Deployment = {
     if (uid === undefined || uid === null) {
       return null
     }
-    result = await post(`/v2/now/deployments/${uid}/aliases`, {
+    const result = await post(`/v2/now/deployments/${uid}/aliases`, {
       alias: args.alias,
     })
-    return result.status
+    if (result.status === 200) {
+      return 'Success!'
+    }
   },
   async setScaleConfiguration({ self, args }) {
     const { uid } = self.match(root.deployments.one())
     if (uid === undefined || uid === null) {
       return null
     }
-    result = await post(`/v1/now/deployments/${uid}/instances`, {
+    console.log(uid)
+    const result = await post(`/v1/now/deployments/${uid}/instances`, {
       min: args.min,
       max: args.max,
     })
-    return result.status
+    console.log(result)
   },
   async aliases({ source }) {
     const { uid } = source
     if (uid === undefined || uid === null) {
       return null
     }
-    result = await get(`/v2/now/deployments/${uid}/aliases`)
+    const result = await get(`/v2/now/deployments/${uid}/aliases`)
     return result.aliases
   },
 
@@ -126,7 +129,7 @@ export const Deployment = {
 
 export const AliasesCollection = {
   async one({ args }) {
-    result = await get(`/v2/now/aliases/`)
+    const result = await get(`/v2/now/aliases/`)
     const alias = result.aliases.find((one) => one.uid === args.uid)
     return alias
   },
