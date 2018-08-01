@@ -68,7 +68,7 @@
       "name": "self",
       "type": "Ref",
       "ofType": {
-       "type": "Deployment"
+       "type": "DeploymentsItem"
       }
      }
     ],
